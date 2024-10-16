@@ -2,26 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer base {
+  .dark {
+    --background: 220 15% 15%; /* Azul escuro para o fundo */
+    --foreground: 210 60% 96%; /* Azul muito claro para o texto */
+
+    --card: 220 25% 20%; /* Azul mais escuro para o fundo dos cards */
+    --card-foreground: 210 60% 96%; /* Texto dos cards em azul claro */
+
+    --popover: 220 25% 20%; /* Popover com o mesmo azul do card */
+    --popover-foreground: 210 60% 96%; /* Texto claro nos popovers */
+
+    --primary: 210 90% 60%; /* Azul primário mais vibrante */
+    --primary-foreground: 0 0% 100%; /* Texto em branco sobre o primário */
+
+    --secondary: 220 20% 30%; /* Azul menos vibrante para elementos secundários */
+    --secondary-foreground: 210 60% 96%; /* Texto claro sobre o secundário */
+
+    --muted: 220 20% 25%; /* Azul mais suave para elementos muted */
+    --muted-foreground: 215 20.2% 65.1%; /* Texto muted mais suave */
+
+    --accent: 210 80% 50%; /* Azul mais vibrante para acentos */
+    --accent-foreground: 210 60% 96%; /* Texto claro sobre acentos */
+
+    --destructive: 0 70% 50%; /* Vermelho forte para ações destrutivas */
+    --destructive-foreground: 210 60% 96%; /* Texto claro sobre ações destrutivas */
+
+    --border: 220 20% 25%; /* Azul escuro para bordas */
+    --input: 220 20% 25%; /* Azul escuro para inputs */
+    --ring: 210 80% 60%; /* Azul claro e brilhante para foco (ring) */
+
+    --radius: 0.5rem; /* Raio de borda */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
