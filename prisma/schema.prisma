@@ -16,37 +16,37 @@ model User {
   updatedAt DateTime  @updatedAt
 }
 
-model Petcenters {
-  id          String              @id @default(uuid())
+model Personal {
+  id          String            @id @default(uuid())
   name        String
   address     String
   phones      String[]
   description String
   imageUrl    String
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-  services    PetcentersService[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  services    PersonalService[]
 }
 
-model PetcentersService {
-  id           String     @id @default(uuid())
-  name         String
-  description  String
-  imageUrl     String
-  price        Decimal    @db.Decimal(10, 2)
-  petcentersId String
-  petcenters   Petcenters @relation(fields: [petcentersId], references: [id])
-  bookings     Booking[]
+model PersonalService {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  imageUrl    String
+  price       Decimal   @db.Decimal(10, 2)
+  personalId  String
+  personal    Personal  @relation(fields: [personalId], references: [id])
+  bookings    Booking[]
 }
 
 model Booking {
-  id           String            @id @default(uuid())
-  userId       String
-  user         User              @relation(fields: [userId], references: [id])
-  petcentersId String
-  serviceId    String
-  service      PetcentersService @relation(fields: [serviceId], references: [id])
-  date         DateTime
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
+  id         String          @id @default(uuid())
+  userId     String
+  user       User            @relation(fields: [userId], references: [id])
+  personalId String
+  serviceId  String
+  service    PersonalService @relation(fields: [serviceId], references: [id])
+  date       DateTime
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
 }
