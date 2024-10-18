@@ -6,8 +6,13 @@ import Image from 'next/image'
 import { Card, CardContent } from './_components/ui/card'
 import { Badge } from './_components/ui/badge'
 import { Avatar, AvatarImage } from './_components/ui/avatar'
+import { db } from './_lib/prisma'
+import PersonalItem from './_components/personal-item'
 
-export default function Home() {
+const Home = async () => {
+  // Chamando meu Banco de dados
+  const personais = await db.personal.findMany({})
+
   return (
     <div>
       <Header />
@@ -36,7 +41,10 @@ export default function Home() {
         </div>
 
         {/*Agendamento */}
-        <Card className="mt-6">
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Agendamentos
+        </h2>
+        <Card>
           <CardContent className="flex justify-between p-0">
             {/*Esquerda*/}
             <div className="flex flex-col gap-2 py-5 pl-5">
@@ -60,7 +68,17 @@ export default function Home() {
             </div>
           </CardContent>
         </Card>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Recomendados
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {personais.map((personal) => (
+            <PersonalItem key={personal.id} personal={personal} />
+          ))}
+        </div>
       </div>
     </div>
   )
 }
+export default Home
