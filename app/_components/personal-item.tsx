@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { StarIcon } from 'lucide-react'
+import Link from 'next/link'
 
 interface PersonalItemProps {
   personal: Personal
@@ -38,8 +39,9 @@ const PersonalItem = ({ personal }: PersonalItemProps) => {
           <Button
             variant="secondary"
             className="mt-3 w-full hover:bg-[hsl(var(--primary))]"
+            asChild
           >
-            Reservar
+            <Link href={`/personais/${personal.id}`}>Reservar</Link>
           </Button>
         </div>
       </CardContent>
