@@ -6,6 +6,7 @@ import PersonalItem from './_components/personal-item'
 import { quickSearchOptions } from './_constants/search'
 import BookingItem from './_components/booking-item'
 import Search from './_components/search'
+import Link from 'next/link'
 
 const Home = async () => {
   // Chamando meu Banco de dados
@@ -38,14 +39,17 @@ const Home = async () => {
               className="gap-2 hover:bg-[hsl(var(--primary))]"
               variant="secondary"
               key={option.title}
+              asChild
             >
-              <Image
-                src={option.imageUrl}
-                width={24}
-                height={24}
-                alt={option.title}
-              />
-              {option.title}
+              <Link href={`/personais?service=${option.title}`}>
+                <Image
+                  src={option.imageUrl}
+                  width={24}
+                  height={24}
+                  alt={option.title}
+                />
+                {option.title}
+              </Link>
             </Button>
           ))}
         </div>

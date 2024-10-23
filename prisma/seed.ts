@@ -47,14 +47,14 @@ async function seedDatabase() {
 
     const services = [
       {
-        name: 'Treinamento Funcional',
+        name: 'Funcional',
         description: 'Exercícios dinâmicos para melhorar força e coordenação',
         price: 100.0,
         imageUrl:
           'https://img.freepik.com/fotos-gratis/casal-fazendo-treino-crossfit_23-2149080497.jpg?t=st=1729187587~exp=1729191187~hmac=2ce1bb023d10bf900c0ddc74150e93047aa16ddf1d03654b9cd37c889ccf4645&w=996',
       },
       {
-        name: 'Condicionamento Cardiovascular',
+        name: 'Cardiovascular',
         description:
           'Sessões intensas para melhorar a resistência e saúde do coração.',
         price: 80.0,
@@ -62,14 +62,14 @@ async function seedDatabase() {
           'https://img.freepik.com/fotos-gratis/close-na-mulher-fazendo-treino-crossfit_23-2149080513.jpg?t=st=1729187942~exp=1729191542~hmac=974e02f1a6d287e7e2ad3552df75e45cc445c2fc94ceaa77db93253d7e7f0e91&w=996',
       },
       {
-        name: 'Treino de Força',
+        name: 'Musculação',
         description: 'Programa focado em ganho de massa muscular e força.',
         price: 120.0,
         imageUrl:
           'https://img.freepik.com/fotos-gratis/mulher-com-deficiencia-treinando-na-academia-do-centro-de-reabilitacao_155003-43203.jpg?t=st=1729188036~exp=1729191636~hmac=0f3d9d58536a90ff3ba65ee887e5f322a5efecd6af1f683db91b06bc066116bb&w=996',
       },
       {
-        name: 'Treino de Alta Intensidade (HIIT)',
+        name: 'Intensidade',
         description:
           'Exercícios rápidos para queimar gordura e melhorar o condicionamento físico.',
         price: 90.0,
@@ -77,7 +77,7 @@ async function seedDatabase() {
           'https://img.freepik.com/fotos-gratis/treino-preciso-com-personal-trainer_329181-14156.jpg?t=st=1729188150~exp=1729191750~hmac=0847ac786ffcd97d1e003d65fe25630c26e4e610dded4597942bbb812e835431&w=996',
       },
       {
-        name: 'Avaliação Fisica',
+        name: 'Avaliação',
         description:
           'Avaliação completa para planejar um treino personalizado.',
         price: 50.0,

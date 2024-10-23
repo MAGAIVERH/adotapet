@@ -8,9 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
-  },
-  "prisma": {
+    "prepare": "husky",
     "seed": "ts-node --esm prisma/seed.ts"
   },
   "dependencies": {

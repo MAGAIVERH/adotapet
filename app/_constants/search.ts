@@ -10,18 +10,18 @@ export const quickSearchOptions: QuickSearchOptions[] = [
   },
   {
     imageUrl: '/icone-haltere.png',
-    title: 'Treino Funcional',
+    title: 'Funcional',
   },
   {
     imageUrl: '/icone-coração.png',
-    title: 'C. Cardiovascular',
+    title: 'Cardiovascular',
   },
   {
     imageUrl: '/icone-exercício.png',
-    title: 'T. de Alta Intensidade',
+    title: 'Intensidade',
   },
   {
     imageUrl: '/icone-prancheta.png',
-    title: 'Avaliação Física',
+    title: 'Avaliação',
   },
 ]
