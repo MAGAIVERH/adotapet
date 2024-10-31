@@ -88,7 +88,7 @@ model Booking {
   id         String          @id @default(uuid())
   userId     String
   user       User            @relation(fields: [userId], references: [id])
-  personalId String
+  personalId String?
   serviceId  String
   service    PersonalService @relation(fields: [serviceId], references: [id])
   date       DateTime

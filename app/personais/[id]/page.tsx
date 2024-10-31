@@ -96,7 +96,11 @@ const PersonalPage = async ({ params }: PersonalPageProps) => {
         <h2 className="text-xs font-bold uppercase text-gray-400"> Serviços</h2>
         <div className="space-y-3">
           {personal.services.map((service) => (
-            <ServiceItem service={service} key={service.id} />
+            <ServiceItem
+              service={service}
+              personal={personal}
+              key={service.id}
+            />
           ))}
         </div>
       </div>
