@@ -97,8 +97,8 @@ const PersonalPage = async ({ params }: PersonalPageProps) => {
         <div className="space-y-3">
           {personal.services.map((service) => (
             <ServiceItem
-              service={service}
-              personal={personal}
+              service={JSON.parse(JSON.stringify(service))}
+              personal={JSON.parse(JSON.stringify(personal))}
               key={service.id}
             />
           ))}
