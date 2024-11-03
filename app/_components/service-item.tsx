@@ -14,13 +14,14 @@ import {
 import { Calendar } from './ui/calendar'
 import { ptBR } from 'date-fns/locale'
 import { useEffect, useMemo, useState } from 'react'
-import { format, set, isPast, isToday } from 'date-fns'
+import { set, isPast, isToday } from 'date-fns'
 import { createBooking } from '../_actions/create-booking'
 import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
 import { getBookings } from '../_actions/get-bookings'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import SignInDialog from './sign-in-dialog'
+import BookingSummary from './booking-summary'
 
 interface ServiceItemProps {
   service: PersonalService
@@ -94,6 +95,14 @@ const ServiceItem = ({ service, personal }: ServiceItemProps) => {
     fetch()
   }, [selectedDay, service.id])
 
+  const selectedDate = useMemo(() => {
+    if (!selectedDay || !selectedTime) return
+    return set(selectedDay, {
+      hours: Number(selectedTime?.split(':')[0]),
+      minutes: Number(selectedTime?.split(':')[1]),
+    })
+  }, [selectedDay, selectedTime])
+
   const handleBookingClick = () => {
     if (data?.user) {
       return setBookingSheetIsOpen(true)
@@ -117,20 +126,12 @@ const ServiceItem = ({ service, personal }: ServiceItemProps) => {
   }
 
   const handleCreateBooking = async () => {
-    // 1.Nao exibir horarios que ja foram agendados
-    // 2.Nao deixar o usuario reservar se nao estiver logado
     try {
-      if (!selectedDay || !selectedTime) return
-      // ["09" : "00"]
-      const hour = Number(selectedTime.split(':')[0])
-      const minute = Number(selectedTime.split(':')[1])
-      const newDate = set(selectedDay, {
-        minutes: Number(minute),
-        hours: Number(hour),
-      })
+      if (!selectedDate) return
+
       await createBooking({
         serviceId: service.id,
-        date: newDate,
+        date: selectedDate,
       })
       handleBookingSheetOpenChange()
       toast.success('Reserva criada com sucesso!')
@@ -250,40 +251,13 @@ const ServiceItem = ({ service, personal }: ServiceItemProps) => {
                     </div>
                   )}
 
-                  {selectedTime && selectedDay && (
+                  {selectedDate && (
                     <div className="p-5">
-                      <Card>
-                        <CardContent className="space-y-3 p-3">
-                          <div className="flex items-center justify-between">
-                            <h2 className="font-bold">{service.name}</h2>
-                            <p className="text-sm font-bold">
-                              {Intl.NumberFormat('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                              }).format(Number(service.price))}
-                            </p>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <h2 className="text-sm text-gray-400">Data</h2>
-                            <p className="text-sm">
-                              {format(selectedDay, "d 'de' MMMM", {
-                                locale: ptBR,
-                              })}
-                            </p>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <h2 className="text-sm text-gray-400">Horário</h2>
-                            <p className="text-sm">{selectedTime}</p>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <h2 className="text-sm text-gray-400">Personal</h2>
-                            <p className="text-sm">{personal.name}</p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <BookingSummary
+                        personal={personal}
+                        service={service}
+                        selectedDate={selectedDate}
+                      />
                     </div>
                   )}
 
