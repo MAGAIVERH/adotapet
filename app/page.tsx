@@ -12,6 +12,7 @@ import { authOptions } from './_lib/auth'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { getConfirmedBookings } from './data/get-confirmed-bookings'
+import AnnouncementBar from './_components/announcementBar'
 
 const Home = async () => {
   const session = await getServerSession(authOptions)
@@ -28,6 +29,7 @@ const Home = async () => {
 
   return (
     <div>
+      <AnnouncementBar />
       <Header />
 
       <div className="p-5">
